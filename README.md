@@ -38,7 +38,6 @@ Current planned features:
 - Pinia
 - Router
 - Vitest
-- Tailwind CSS
 - ESLint
 - Prettier
 
