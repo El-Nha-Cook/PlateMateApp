@@ -36,6 +36,7 @@ Current planned features:
 - TypeScript
 - Vite
 - Pinia
+- Router
 - Vitest
 - Tailwind CSS
 - ESLint
