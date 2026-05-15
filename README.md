@@ -57,19 +57,20 @@ The application follows a modular and scalable folder structure.
 
 ```plaintext
 src/
+└── _tests_/
 ├── assets/
 ├── components/
 │   ├── recipes/
 │   ├── planner/
 │   ├── grocery/
-│   └── ui/
 ├── composables/
-├── stores/
-├── pages/
+├── layouts/
+│   └── Layout.vue
 ├── router/
+├── stores/
+├── views/
 ├── types/
 ├── utils/
-└── tests/
 ```
 
 ## Planned Components
