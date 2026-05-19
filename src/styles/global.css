@@ -76,3 +76,60 @@ select {
 }
 
 /* END RESET -------------------------------------------- */
+
+
+:root[data-theme="dark"] {
+  --bg: midnightblue;
+  --text: gainsboro;
+  --accent: lightsteelblue;
+  --surface: darkslateblue;
+  --button: lavender;
+}
+
+:root[data-theme="light"] {
+  --bg: snow;
+  --text: midnightblue;
+  --accent: darkslateblue;
+  --surface: darkslateblue;
+  --button: thistle;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  
+}
+
+h1{
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  gap: 1rem;
+}
+/* link styling */
+a,
+a:not(.router-link-active),
+a:not(.router-link-exact-active) {
+  text-decoration: none;
+  color: var(--accent);
+}
+/* vue gives you an active class for RouterLink: */
+.router-link-active,
+.router-link-exact-active {
+  font-weight: bold;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: none;
+}
