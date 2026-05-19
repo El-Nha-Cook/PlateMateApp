@@ -133,3 +133,19 @@ a:not(.router-link-exact-active) {
   cursor: pointer;
   text-decoration: none;
 }
+
+.layout-wrapper,
+.recipes-layout-wrapper {
+    margin: 0;
+    padding: 0;
+}
+
+.main-layout,
+.recipes-layout {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    align-items: center;
+    flex: 1;
+    gap: 1rem;
+}
