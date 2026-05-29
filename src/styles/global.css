@@ -77,7 +77,7 @@ select {
 
 /* END RESET -------------------------------------------- */
 
-
+/* GLOBAL VARIABLES  */
 :root[data-theme="dark"] {
   --bg: midnightblue;
   --text: gainsboro;
@@ -118,7 +118,7 @@ main {
   flex: 1;
   gap: 1rem;
 }
-/* link styling */
+/* LINK STYLING */
 a,
 a:not(.router-link-active),
 a:not(.router-link-exact-active) {
@@ -133,7 +133,7 @@ a:not(.router-link-exact-active) {
   cursor: pointer;
   text-decoration: none;
 }
-
+/* LAYOUT STYLING  */
 .layout-wrapper,
 .recipes-layout-wrapper {
     margin: 0;
