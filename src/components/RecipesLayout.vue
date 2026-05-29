@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import Header from '@/layouts/Header.vue'
+import Header from '@/components/TheHeader.vue'
 </script>
 
 <template>
@@ -15,6 +15,4 @@ import Header from '@/layouts/Header.vue'
   </div>
 </template>
 
-<style>
-</style>
-
+<style></style>
