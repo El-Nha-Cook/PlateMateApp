@@ -1,8 +1,11 @@
 
-export async function analyzeNutrition(
-  ingredients: string[]
-) {
-  const res = await fetch(...)
+//placeholder for nutrition api
 
-  return res.json()
-}
+
+// export async function analyzeNutrition(
+//   ingredients: string[]
+// ) {
+//   const res = await fetch(...)
+
+//   return res.json()
+// }
