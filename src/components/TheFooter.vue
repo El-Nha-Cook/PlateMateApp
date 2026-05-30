@@ -1,60 +1,132 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+
+const team = [
+  {
+    name: 'Nha Pham',
+    linkedin: 'https://www.linkedin.com/in/nha-pham-96a181295/',
+    github: 'https://github.com/nhapham03',
+  },
+  {
+    name: 'El Brewster',
+    linkedin: 'https://www.linkedin.com/in/el-brewster/',
+    github: 'https://github.com/elbi3',
+  },
+]
+
+const stack = [
+  { icon: 'logos:vue', label: 'Vue 3' },
+  { icon: 'logos:vitejs', label: 'Vite' },
+  { icon: 'logos:pinia', label: 'Pinia' },
+]
+</script>
 
 <template>
-  <footer class="footer-nav">
-    <h3>PlateMate</h3>
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-left">
+        <p class="footer-created">Created by Nha Pham and El Brewster</p>
+        <p class="footer-desc">
+          Helping users plan meals, organize grocery lists, and discover recipes.
+        </p>
+      </div>
 
-    <p>Created by Nha Pham and El Brewster</p>
-
-    <p>Helping users plan meals, organize grocery lists, and discover recipes.</p>
-
-    <div class="footer-links">
-      <RouterLink to="/">Home</RouterLink>
-      <RouterLink to="/meal-planner">Meal Planner</RouterLink>
-      <RouterLink to="/grocery-list">Grocery List</RouterLink>
-      <RouterLink to="/recipes">Recipes</RouterLink>
+      <div class="footer-right">
+        <div v-for="person in team" :key="person.name" class="person-row">
+          <span class="person-name">{{ person.name }}</span>
+          <a :href="person.github" target="_blank" :aria-label="`${person.name} GitHub`">
+            <Icon icon="mdi:github" width="18" />
+          </a>
+          <a :href="person.linkedin" target="_blank" :aria-label="`${person.name} LinkedIn`">
+            <Icon icon="mdi:linkedin" width="18" />
+          </a>
+        </div>
+      </div>
     </div>
 
-    <p>Powered by Vue 3 + Vue Router</p>
-
-    <p>© 2026 PlateMate</p>
+    <div class="footer-bottom">
+      <span>Powered by Vue 3 + Vite + Pinia</span>
+      <div class="stack-icons">
+        <Icon
+          v-for="tech in stack"
+          :key="tech.label"
+          :icon="tech.icon"
+          :title="tech.label"
+          width="20"
+        />
+      </div>
+    </div>
   </footer>
 </template>
 
-<style>
-.footer-nav {
+<style scoped>
+.footer {
   background-color: #6a6c6e;
   color: white;
   padding: 2rem;
-  text-align: center;
   margin-top: 3rem;
 }
 
-.footer-nav h3 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-.footer-nav p {
-  margin: 0.5rem 0;
+.footer-created {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.footer-desc {
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.person-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.person-name {
+  font-size: 0.9rem;
   color: #d1d5db;
 }
 
-.footer-nav p:last-child {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-}
-.footer-links {
-  margin: 1rem 0;
+.person-row a {
+  color: #d1d5db;
+  display: flex;
+  transition: color 0.15s;
 }
 
-.footer-links a {
+.person-row a:hover {
   color: white;
-  text-decoration: none;
-  margin: 0 12px;
 }
 
-.footer-links a:hover {
-  text-decoration: underline;
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: #d1d5db;
+}
+
+.stack-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
 }
 </style>
