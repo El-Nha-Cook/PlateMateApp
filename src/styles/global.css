@@ -89,7 +89,7 @@ select {
 :root[data-theme="light"] {
   --bg: snow;
   /* --text: midnightblue; */
-  --text: 2c3e50;
+  --text: #2c3e50;
   --accent: darkslateblue;
   --surface: darkslateblue;
   --button: thistle;
@@ -124,16 +124,40 @@ main {
   gap: 1rem;
 }
 
-/* DEFAULT HEADER STYLING */
+/*HEADER-NAV-COMBO STYLING */
 .header-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 5%;
-  background-color: #ffffff;
-  border-bottom: 1px solid #f0f0f0;
+  background-color: VAR(--bg);
+  border-bottom: 1px solid var(--accent);
   /* Soft shadow for a "happy" lift */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.site-logo.a > * {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #637d64; 
 }
 
 /* LINK STYLING */
@@ -147,14 +171,11 @@ a:not(.router-link-exact-active) {
 .router-link-active,
 .router-link-exact-active {
 
-  color: var(--accent);
+  color: var(--text);
   cursor: pointer;
   text-decoration: none;
 }
 
-.site-logo .router-link-exact-active {
-  color: inherit;
-}
 
 /* LAYOUT STYLING  */
 .layout-wrapper {

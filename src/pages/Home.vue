@@ -4,5 +4,6 @@ import { RouterView } from "vue-router";
 
 <template>
     <h1>Home</h1>
+    <p>this is to check styling stuff</p>
     <RouterView />
 </template>
