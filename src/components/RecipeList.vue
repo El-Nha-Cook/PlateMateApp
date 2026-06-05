@@ -15,7 +15,7 @@
     <input v-model="search" placeholder="Try 'chicken'..."/>
     <p>Status: {{status}}</p>
     <div v-if="status === 'error'">{{error?.message}}</div>
-    <div v-else-if="status=== 'success' && data?.length">
+    <div class="all-cards" v-else-if="status=== 'success' && data?.length">
       <RecipeCard
         v-for="recipe in data"
         :key="recipe.id"
@@ -32,3 +32,11 @@
     </div>
     <p v-if="status === 'success' && !data?.length">No results for "{{ search }}"</p>
 </template>
+
+<style>
+.all-cards {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+</style>

@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import type { Recipe } from "@/api/types.ts";
+const isFlipped = ref(false);
 defineProps<{
     recipe: Recipe
 }>();
@@ -7,28 +9,42 @@ defineProps<{
 
 <template>
     <article class="card-container">
-        <div class="row">0</div>
-        <div class="form-inputs-group">
-            <div class="input-container">
-                <span class="my-label" for="blog-title">Recipe Title: {{recipe.title}}</span>
-                <input class="my-input" name="blog-title" type="text" >
-            <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
+        <div v-if="!isFlipped">
+
+            <div class="row-title">{{recipe.title}}</div>
+            <div class="line-outputs-group">
+                <!-- <div class="output-container">
+                    <span class="my-detail">{{recipe.title}}</span>
+                </div> -->
+                <div class="output-container">
+                    <span class="my-detail">{{recipe.category.toUpperCase()}} --- {{recipe.area}}</span>
+                </div>
+                <div class="output-container">
+                    <span class="my-detail" >Ingredients:</span>
+                </div>
+                <div v-for="ingredient in recipe.ingredients"
+                :key="`${ingredient.name}-${ingredient.measure}`">
+                    <div class="output-container">
+                        <span class="my-detail">
+                            <span class="dot">&#9677;</span> 
+                            {{ ingredient.name }} - 
+                            {{ ingredient.measure.toLowerCase() }} 
+                        </span>
+                    </div>
+                </div>
+                <button class="flip-btn" @click="isFlipped = !isFlipped">
+                {{ isFlipped ? 'Front' : 'Instructions' }} 
+                </button>
             </div>
-            <div class="input-container">
-                <span class="my-label" for="blog-title">Category: {{recipe.category}}</span>
-                <input class="my-input" name="blog-title" type="text" >
-                <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
+        </div>
+        <!-- add a flipped component here because the instructions are frequently larger than a "card size" -->
+        <div v-if="isFlipped">
+            <div class="form-inputs-group">
+                {{recipe.instructions}}
             </div>
-            <div class="input-container">
-                <label class="my-label" for="blog-title">Ingredient:</label>
-                <input class="my-input" name="blog-title" type="text" >
-                <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
-            </div>
-            <div class="input-container">
-                <label class="my-label" for="blog-title">Instructions:</label>
-                <input class="my-input" name="blog-title" type="text" >
-                <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
-            </div>
+            <button class="flip-btn" @click="isFlipped = !isFlipped">
+            {{ isFlipped ? 'Front' : 'Instructions' }}
+            </button>
         </div>
     </article>
 </template>
@@ -37,31 +53,40 @@ defineProps<{
 .card-container {
     display: flex;
     flex-direction: column;
-    min-width: 60%;
+    min-width: 100%;
     background-color: whitesmoke;
+    border-top: 1px solid ghostwhite;
+    border-right: 1px solid ghostwhite;
+    border-bottom: 1px solid silver;
+    border-left: 1px solid lightgray;
 }
-.row {
+.row-title {
     border-bottom: 1px solid red;
-    color: whitesmoke;
+    color: midnightblue;
+    line-height: 1.8;
+    font-size: large;
+    padding-left: 6ch;
 }
-.form-inputs-group {
+.line-outputs-group {
     margin: 0;
+    min-width: 30ch;
 }
-.input-container {
-    border-bottom: 1px solid darkcyan;
+.output-container {
+    /* border-bottom: 1px solid darkcyan; */
+    border-bottom: 1px solid #86a9a5;
     padding-left: 5ch;
 }
-.my-label {
+.my-detail {
     color: darkblue;
 }
-.my-input {
+.dot {
+    font-size: small;
+}
+.flip-btn {
     background-color: whitesmoke;
     border: none;
+    font-style: italic;
+    cursor: pointer;
 }
-.my-input:hover {
-    border: none;
-}
-.my-input:active {
-    border: none;
-}
+
 </style>
