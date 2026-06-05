@@ -10,12 +10,12 @@ defineProps<{
         <div class="row">0</div>
         <div class="form-inputs-group">
             <div class="input-container">
-                <label class="my-label" for="blog-title">Recipe Title: {{recipe.title}}</label>
+                <span class="my-label" for="blog-title">Recipe Title: {{recipe.title}}</span>
                 <input class="my-input" name="blog-title" type="text" >
             <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
             </div>
             <div class="input-container">
-                <label class="my-label" for="blog-title">Category: {{recipe.category}}</label>
+                <span class="my-label" for="blog-title">Category: {{recipe.category}}</span>
                 <input class="my-input" name="blog-title" type="text" >
                 <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
             </div>
