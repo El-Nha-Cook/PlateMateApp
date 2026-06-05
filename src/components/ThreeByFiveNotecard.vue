@@ -1,21 +1,18 @@
-<script setup lang="ts">
-import type { Recipe } from "@/api/types.ts";
-defineProps<{
-    recipe: Recipe
-}>();
+<script>
+//I am preserving this component in case we have time to add a recipe submission feature
 </script>
 
 <template>
-    <article class="card-container">
+    <div class="card-container">
         <div class="row">0</div>
         <div class="form-inputs-group">
             <div class="input-container">
-                <label class="my-label" for="blog-title">Recipe Title: {{recipe.title}}</label>
+                <label class="my-label" for="blog-title">Recipe Title:</label>
                 <input class="my-input" name="blog-title" type="text" >
             <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
             </div>
             <div class="input-container">
-                <label class="my-label" for="blog-title">Category: {{recipe.category}}</label>
+                <label class="my-label" for="blog-title">Ingredient:</label>
                 <input class="my-input" name="blog-title" type="text" >
                 <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
             </div>
@@ -30,14 +27,14 @@ defineProps<{
                 <!-- <input name="blog-title" type="text" class="title-input" v-model="newPost.title"> -->
             </div>
         </div>
-    </article>
+    </div>
 </template>
 
 <style scoped>
 .card-container {
     display: flex;
     flex-direction: column;
-    min-width: 60%;
+    width: 60%;
     background-color: whitesmoke;
 }
 .row {

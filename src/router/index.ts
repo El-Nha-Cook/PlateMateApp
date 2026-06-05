@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 //import layout components
-import Layout from '@/components/TheLayout.vue'
-import RecipesLayout from '@/components/RecipesLayout.vue'
-//import view components
+import TheLayout from '@/layouts/TheLayout.vue'
+import RecipesLayout from '@/layouts/RecipesLayout.vue'
+//import page components
 import Home from '@/pages/Home.vue'
 //import child components-whatever needs its own url
 // Child Components are reccommended to use 'lazy loading', they keep the initial page load fast, only runs as user clicks
@@ -11,7 +11,7 @@ import Home from '@/pages/Home.vue'
 const routes = [
   {
     path: '/',
-    component: Layout,
+    component: TheLayout,
     children: [
       { path: '', component: Home },
       { path: '/meal-planner', component: () => import('@/components/MealPlanner.vue') },
