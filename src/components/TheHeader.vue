@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <header class="header-nav">
-    <div class="logo">
+    <div class="site-logo">
       <RouterLink to="/">
         <h1>PlateMate</h1>
       </RouterLink>
@@ -19,23 +19,14 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style>
-.header-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 5%;
-  background-color: #ffffff;
-  border-bottom: 1px solid #f0f0f0;
-  /* Soft shadow for a "happy" lift */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-}
 
-.logo a {
+
+.site-logo a {
   text-decoration: none;
-  color: #2c3e50;
+  color: var(--text);
 }
 
-.logo h1 {
+.site-logo h1 {
   font-size: 1.5rem;
   margin: 0;
   font-weight: 700;
@@ -60,14 +51,9 @@ import { RouterLink } from 'vue-router'
   color: #637d64; /* A soft sage green */
 }
 
-/* This class is automatically applied by Vue Router when the link is active */
 .router-link-active {
   color: #637d64;
   font-weight: 600;
 }
 
-/* Exception: Don't highlight the logo as active unless it's the only match */
-.logo .router-link-exact-active {
-  color: inherit;
-}
 </style>

@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import Header from '@/components/TheHeader.vue'
+import TheHeader from '@/components/TheHeader.vue'
+import TheFooter from '@/components/TheFooter.vue';
 </script>
 
 <template>
-  <div class="recipes-layout-wrapper">
-    <!-- header component  -->
-    <Header />
-    <!-- nav component -->
-    <main class="recipes-layout">
+  <div class="layout-wrapper">
+    <TheHeader />
+    <main class="main-layout">
       <RouterView />
     </main>
-    <!-- footer component  -->
+    <TheFooter />
   </div>
 </template>
 
-<style></style>
+

@@ -88,7 +88,8 @@ select {
 
 :root[data-theme="light"] {
   --bg: snow;
-  --text: midnightblue;
+  /* --text: midnightblue; */
+  --text: 2c3e50;
   --accent: darkslateblue;
   --surface: darkslateblue;
   --button: thistle;
@@ -109,6 +110,10 @@ body {
 h1{
   display: flex;
   justify-content: center;
+  .site-logo {
+    color: var(--text);
+  }
+  
 }
 
 main {
@@ -118,30 +123,46 @@ main {
   flex: 1;
   gap: 1rem;
 }
+
+/* DEFAULT HEADER STYLING */
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #f0f0f0;
+  /* Soft shadow for a "happy" lift */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
 /* LINK STYLING */
 a,
 a:not(.router-link-active),
 a:not(.router-link-exact-active) {
   text-decoration: none;
-  color: var(--accent);
+  color: var(--text);
 }
-/* vue gives you an active class for RouterLink: */
+/* vue's active class for RouterLink: */
 .router-link-active,
 .router-link-exact-active {
-  font-weight: bold;
+
   color: var(--accent);
   cursor: pointer;
   text-decoration: none;
 }
+
+.site-logo .router-link-exact-active {
+  color: inherit;
+}
+
 /* LAYOUT STYLING  */
-.layout-wrapper,
-.recipes-layout-wrapper {
+.layout-wrapper {
     margin: 0;
     padding: 0;
 }
 
-.main-layout,
-.recipes-layout {
+.main-layout {
     display: flex;
     flex-direction: column;
     background-color: var(--bg);

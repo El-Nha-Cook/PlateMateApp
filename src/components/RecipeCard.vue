@@ -26,7 +26,7 @@ defineProps<{
                 :key="`${ingredient.name}-${ingredient.measure}`">
                     <div class="output-container">
                         <span class="my-detail">
-                            <span class="dot">&#9677;</span> 
+                            <span class="dot">&#9677;</span>&nbsp;&nbsp; 
                             {{ ingredient.name }} - 
                             {{ ingredient.measure.toLowerCase() }} 
                         </span>
