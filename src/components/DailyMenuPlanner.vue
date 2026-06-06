@@ -36,6 +36,10 @@ function moveToSideboard(cardId, bucketKey){
             return;
         }
     }
+    // const idx = plannerCards.value.findIndex(card => card.id === cardId);
+    // if(idx === -1) return;
+    // const [card] = plannerCards.value.splice(idx, 1);
+    // sideboardCards.value.push(card);
 };
 
 function moveBetweenBuckets(cardId, toBucketKey) {
