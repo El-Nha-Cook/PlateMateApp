@@ -1,10 +1,22 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export const useSideboardStore = defineStore("sideboard", () => {
     const sideboardCards = ref([]);
     const MAX_SIDEBOARD = 15;
 
+  const plannerCards = ref({
+    morning:   [],
+    midday:    [],
+    afternoon: [],
+    evening:   [],
+    nightowl:  []
+  })
+
+  const groceryList = computed(() => {
+    const allCards = Object.values(plannerCards.value).flat();
+    return allCards.flatMap(card => card.ingredients ?? []);
+  });
     function selectCard(card) {
         //prevents duplicates
         const already = sideboardCards.value.some(c => c.id === card.id);
@@ -22,7 +34,7 @@ export const useSideboardStore = defineStore("sideboard", () => {
     function isSelected(cardId) {
         return sideboardCards.value.some(c => c.id === cardId);
     };
-    return { sideboardCards, selectCard, deselectCard, isSelected }
+    return { sideboardCards, plannerCards, groceryList, selectCard, deselectCard, isSelected }
 },{
     persist: true //this wires up teh localStorage with the plugin
 });

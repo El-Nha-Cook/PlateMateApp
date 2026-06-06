@@ -7,17 +7,11 @@ import { DnDProvider } from '@vue-dnd-kit/core';
 import { ref } from "vue";
 import { useSideboardStore } from '@/stores/sideboardStore';
 import { storeToRefs } from 'pinia';
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const store = useSideboardStore();
-const { sideboardCards } = storeToRefs(store);
-
-const plannerCards = ref({
-    morning: [],
-    midday: [],
-    afternoon: [],
-    evening: [],
-    nightowl: []
-});
+const { sideboardCards, plannerCards } = storeToRefs(store);
 
 const bucketOrder = ['morning', 'midday', 'afternoon', 'evening', 'nightowl']
 
@@ -85,6 +79,7 @@ function moveBetweenBuckets(cardId, toBucketKey) {
                 @return-to-sideboard="moveToSideboard"
             />
         </div>
+        <button @click="router.push('/grocery-list')">Finalize Plan →</button>
     </DnDProvider>
 </template>
 
