@@ -14,7 +14,7 @@ const routes = [
     component: TheLayout,
     children: [
       { path: '', component: Home },
-      { path: '/meal-planner', component: () => import('@/components/MealPlanner.vue') },
+      { path: '/daily-menu-planner', component: () => import('@/components/DailyMenuPlanner.vue') },
       { path: '/grocery-list', component: () => import('@/components/GroceryList.vue') },
     ],
   },
