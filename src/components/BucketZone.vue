@@ -9,7 +9,8 @@ const props = defineProps({
     cards: Array,
     moveToDashboard: Function,
     moveToSideboard: Function,
-    moveBetweenBuckets: Function
+    moveBetweenBuckets: Function,
+    nudgeDown: Function
 });
 
 const bucketRef = useTemplateRef('bucketRef');
@@ -43,6 +44,7 @@ const { isDragOver } = makeDroppable(bucketRef, {
             :key="card.id"
             :card="card"
             origin="planner"
+            :nudge-down="nudgeDown"
             @remove="props.moveToSideboard(card.id)"
         />
         <p v-if="cards.length === 0" class="bucket-empty">drop here</p>

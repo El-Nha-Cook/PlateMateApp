@@ -1,13 +1,29 @@
 <script setup lang="ts">
-// import { makeDraggable } from "@vue-dnd-kit/core";
 import DraggableCard from "./DraggableCard.vue";
+import { makeDroppable } from "@vue-dnd-kit/core";
+import { useTemplateRef } from "vue";
 
 defineProps({ cards: Array});
 const emit = defineEmits(["move-to-dashboard"]);
+
+const sideboardRef = useTemplateRef('sideboardRef');
+
+const { isDragOver } = makeDroppable(sideboardRef, {
+    events: {
+        onDrop(e) {
+            const cardId = e.draggedItems?.[0]?.data?.id;
+            const origin = e.draggedItems?.[0]?.data?.origin;
+        }
+    }
+});
 </script>
 
 <template>
-    <aside class="sideboard-aside">
+    <aside 
+    ref="sideboardRef"
+    class="sideboard-aside"
+    :class="{ 'is-drag-over': isDragOver }"
+    >
         <h3>sideboard</h3>
         <DraggableCard 
             v-for="card in cards" 

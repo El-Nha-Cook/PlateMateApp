@@ -23,7 +23,7 @@ const routes = [
     path: '/recipes',
     component: RecipesLayout,
     children: [
-      { path: '', component: () => import('@/components/RecipeList.vue') },
+      { path: '', component: () => import('@/components/RecipeGallery.vue') },
       { path: 'recipe/:id', component: () => import('@/components/RecipeCard.vue') },
     ],
   },

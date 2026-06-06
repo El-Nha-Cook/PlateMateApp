@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { Recipe } from "@/api/types.ts";
+import { useSideboardStore } from "@/stores/sideboardStore";
+
 const isFlipped = ref(false);
-defineProps<{
-    recipe: Recipe
-}>();
+defineProps<{recipe: Recipe}>();
+const emit = defineEmits(["toggle"]);
+const store = useSideboardStore();
 </script>
 
 <template>
-    <article class="card-container">
+    <article 
+    class="card-container"
+    :class="{'is-selected': store.isSelected(recipe.id)}"
+    :aria-checked="store.isSelected(recipe.id)"
+    role="checkbox"
+    >
         <div v-if="!isFlipped">
-
             <div class="row-title">{{recipe.title}}</div>
             <div class="line-outputs-group">
-                <!-- <div class="output-container">
-                    <span class="my-detail">{{recipe.title}}</span>
-                </div> -->
                 <div class="output-container">
                     <span class="my-detail">{{recipe.category.toUpperCase()}} --- {{recipe.area}}</span>
                 </div>
@@ -23,7 +26,8 @@ defineProps<{
                     <span class="my-detail" >Ingredients:</span>
                 </div>
                 <div v-for="ingredient in recipe.ingredients"
-                :key="`${ingredient.name}-${ingredient.measure}`">
+                :key="`${ingredient.name}-${ingredient.measure}`"
+                >
                     <div class="output-container">
                         <span class="my-detail">
                             <span class="dot">&#9677;</span>&nbsp;&nbsp; 
@@ -32,8 +36,17 @@ defineProps<{
                         </span>
                     </div>
                 </div>
+                <!-- this button flips card to the back or front -->
                 <button class="flip-btn" @click="isFlipped = !isFlipped">
                 {{ isFlipped ? 'Front' : 'Instructions' }} 
+                </button>
+                <!-- this button selects the card for the menu -->
+                <button
+                class="select-btn"
+                @click.stop="emit('toggle')"
+                :aria-label="store.isSelected(recipe.id) ? 'Remove from sideboard' : 'Add to sideboard'"
+                >
+                {{ store.isSelected(recipe.id) ? 'Selected' : 'Select'}}
                 </button>
             </div>
         </div>

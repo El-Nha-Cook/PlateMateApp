@@ -5,7 +5,8 @@ const props = defineProps({
     plannerCards: Object,
     moveToDashboard: Function, //moveToDashboard passed down from parent
     moveToSideboard: Function,
-    moveBetweenBuckets: Function
+    moveBetweenBuckets: Function,
+    nudgeDown: Function
 }); //defineProps compiler macro takes an options object
 
 const buckets = [
@@ -29,6 +30,7 @@ const buckets = [
         :move-to-dashboard="moveToDashboard"
         :move-to-sideboard="moveToSideboard"
         :move-between-buckets="moveBetweenBuckets"
+        :nudge-down="nudgeDown"
         />
     </section>
 </template>

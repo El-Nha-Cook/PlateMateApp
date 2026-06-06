@@ -4,7 +4,8 @@ import { useTemplateRef } from 'vue';
 
 const props = defineProps({ 
     card: Object,
-    origin: String
+    origin: String,
+    nudgeDown: Function
 });
 
 const emit = defineEmits(['click', 'remove']);
@@ -23,8 +24,9 @@ makeDraggable(cardRef, {
         style="touch-action: none;"
         @click="emit('click')"
     >
-    <span>{{ card.emoji }} {{ card.name }}</span>
+    <span>{{ card.emoji ?? '🥣' }} {{ card.title ?? card.name }}</span>
     <button v-if="origin === 'planner'" @click.stop="emit('remove')">x</button>
+    <button v-if="origin === 'planner'" @click.stop="nudgeDown(card.id)">↓</button>
     <button v-else @click.stop="emit('click')">Add -></button>
     </div>
 </template>
