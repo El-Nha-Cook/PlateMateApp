@@ -11,7 +11,7 @@ import { RouterLink } from 'vue-router'
     </div>
 
     <nav class="nav-links">
-      <RouterLink to="/daily-menu-planner" class="nav-item">Meal Planner</RouterLink>
+      <RouterLink to="/planner" class="nav-item">Daily Menu Planner</RouterLink>
       <RouterLink to="/grocery-list" class="nav-item">Grocery List</RouterLink>
       <RouterLink to="/recipes" class="nav-item">Recipes</RouterLink>
     </nav>
