@@ -43,7 +43,7 @@ describe('DraggableCard — sideboard origin', () => {
 describe('DraggableCard — planner origin', () => {
   it('shows the remove button when origin is planner', () => {
     const wrapper = mount(DraggableCard, {
-      props: { card: mockCard, origin: 'planner' }
+      props: { card: mockCard, origin: 'planner', nudgeDown: vi.fn() }
     })
 
     expect(wrapper.find('button').text()).toContain('x')
@@ -51,7 +51,7 @@ describe('DraggableCard — planner origin', () => {
 
   it('emits remove when the x button is clicked', async () => {
     const wrapper = mount(DraggableCard, {
-      props: { card: mockCard, origin: 'planner' }
+      props: { card: mockCard, origin: 'planner', nudgeDown: vi.fn() }
     })
 
     await wrapper.find('button').trigger('click')
@@ -61,12 +61,45 @@ describe('DraggableCard — planner origin', () => {
 
   it('does not emit remove when the card body is clicked', async () => {
     const wrapper = mount(DraggableCard, {
-      props: { card: mockCard, origin: 'planner' }
+      props: { card: mockCard, origin: 'planner', nudgeDown: vi.fn() }
     })
 
     // clicking the span (card body) should not trigger remove
     await wrapper.find('span').trigger('click')
 
     expect(wrapper.emitted('remove')).toBeFalsy()
+  })
+})
+
+describe('DraggableCard — nudge down', () => {
+  it('renders the nudge down button when origin is planner', () => {
+    const wrapper = mount(DraggableCard, {
+      props: { card: mockCard, origin: 'planner', nudgeDown: vi.fn() }
+    })
+
+    const buttons = wrapper.findAll('button')
+    const labels = buttons.map(b => b.text())
+    expect(labels).toContain('↓')
+  })
+
+  it('calls nudgeDown with the card id when ↓ is clicked', async () => {
+    const nudgeDown = vi.fn()
+    const wrapper = mount(DraggableCard, {
+      props: { card: mockCard, origin: 'planner', nudgeDown }
+    })
+
+    const nudgeBtn = wrapper.findAll('button').find(b => b.text() === '↓')
+    await nudgeBtn.trigger('click')
+
+    expect(nudgeDown).toHaveBeenCalledWith('oats')
+  })
+
+  it('does not render the nudge down button when origin is sideboard', () => {
+    const wrapper = mount(DraggableCard, {
+      props: { card: mockCard, origin: 'sideboard', nudgeDown: vi.fn() }
+    })
+
+    const labels = wrapper.findAll('button').map(b => b.text())
+    expect(labels).not.toContain('↓')
   })
 })

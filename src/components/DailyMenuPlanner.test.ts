@@ -1,6 +1,7 @@
 // MenuPlanner.test.ts
 import { mount } from '@vue/test-utils'
 import { describe, it, expect, beforeEach } from 'vitest'
+import { createTestingPinia } from '@pinia/testing'
 import DailyMenuPlanner from './DailyMenuPlanner.vue'
 
 // We need to stub the child components so the test doesn't have to
@@ -12,9 +13,31 @@ const stubs = {
   DnDProvider: true,
 }
 
+function mountWithPinia() {
+  return mount(DailyMenuPlanner, {
+    global: {
+      stubs,
+      plugins: [
+        createTestingPinia({
+          initialState: {
+            // the string here must match your defineStore id
+            sideboard: {
+              sideboardCards: [
+                { id: 'oats',    name: 'Overnight Oats',  emoji: '🥣' },
+                { id: 'chicken', name: 'Grilled Chicken', emoji: '🍗' },
+                { id: 'salad',   name: 'Garden Salad',    emoji: '🥗' },
+              ]
+            }
+          }
+        })
+      ]
+    }
+  })
+}
+
 describe('MenuPlanner — moveToDashboard', () => {
   it('moves a card from sideboardCards into the correct bucket', async () => {
-    const wrapper = mount(DailyMenuPlanner, { global: { stubs } })
+    const wrapper = mountWithPinia()
     const vm = wrapper.vm as any
 
     // confirm the card starts in the sideboard
@@ -31,7 +54,7 @@ describe('MenuPlanner — moveToDashboard', () => {
   })
 
   it('does nothing if the cardId does not exist', () => {
-    const wrapper = mount(DailyMenuPlanner, { global: { stubs } })
+    const wrapper = mountWithPinia()
     const vm = wrapper.vm as any
     const beforeLength = vm.sideboardCards.length
 
@@ -44,7 +67,7 @@ describe('MenuPlanner — moveToDashboard', () => {
 
 describe('MenuPlanner — moveToSideboard', () => {
   it('moves a card from a bucket back to the sideboard', () => {
-    const wrapper = mount(DailyMenuPlanner, { global: { stubs } })
+    const wrapper = mountWithPinia()
     const vm = wrapper.vm as any
 
     // first put a card into a bucket
@@ -59,7 +82,7 @@ describe('MenuPlanner — moveToSideboard', () => {
   })
 
   it('finds a card regardless of which bucket it is in', () => {
-    const wrapper = mount(DailyMenuPlanner, { global: { stubs } })
+    const wrapper = mountWithPinia()
     const vm = wrapper.vm as any
 
     vm.moveToDashboard('chicken', 'nightowl')
@@ -72,7 +95,7 @@ describe('MenuPlanner — moveToSideboard', () => {
 
 describe('MenuPlanner — moveBetweenBuckets', () => {
   it('moves a card from one bucket to another', () => {
-    const wrapper = mount(DailyMenuPlanner, { global: { stubs } })
+    const wrapper = mountWithPinia()
     const vm = wrapper.vm as any
 
     // put a card in morning first
@@ -87,7 +110,7 @@ describe('MenuPlanner — moveBetweenBuckets', () => {
   })
 
   it('does not duplicate the card', () => {
-    const wrapper = mount(DailyMenuPlanner, { global: { stubs } })
+    const wrapper = mountWithPinia()
     const vm = wrapper.vm as any
 
     vm.moveToDashboard('oats', 'morning')
