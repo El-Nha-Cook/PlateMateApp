@@ -28,25 +28,17 @@
 </script>
 
 <template>
+      <input class="recipe-search" v-model="search" placeholder="Try 'chicken'..."/>
+      <p>Status: {{status}}</p>
+      <div v-if="status === 'error'">{{error?.message}}</div>
 
-    <input v-model="search" placeholder="Try 'chicken'..."/>
-    <p>Status: {{status}}</p>
-    <div v-if="status === 'error'">{{error?.message}}</div>
-    <div class="all-cards" v-else-if="status=== 'success' && data?.length">
-      <RecipeCard
-        v-for="recipe in data"
-        :key="recipe.id"
-        :recipe="recipe"
-        @toggle="toggleSelection(recipe)"
-      />
-    </div>
-    <p v-if="status === 'success' && !data?.length">No results for "{{ search }}"</p>
+      <div class="recipe-cards-gallery" v-else-if="status=== 'success' && data?.length">
+        <RecipeCard
+          v-for="recipe in data"
+          :key="recipe.id"
+          :recipe="recipe"
+          @toggle="toggleSelection(recipe)"
+        />
+      </div>
+      <p v-if="status === 'success' && !data?.length">No results for "{{ search }}"</p>
 </template>
-
-<style>
-.all-cards {
-  display: flex;
-  flex-direction: column;
-  gap: .5rem;
-}
-</style>

@@ -37,11 +37,12 @@ const buckets = [
 
 <style>
 .menu-dashboard-section {
-    background-color: thistle;
-    border: 1px solid salmon;
+    background-color: var(--bg);
+    border: 2px solid seagreen;
     padding: 1rem;
+    width: 60%;
 }
 .menu-dashboard-section.is-overed{
-    outline: 5px solid salmon;
+    outline: 5px solid seagreen;
 }
 </style>

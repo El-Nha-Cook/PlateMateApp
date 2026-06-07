@@ -3,7 +3,6 @@ import DailyMenuPlanner from "@/components/DailyMenuPlanner.vue";
 </script>
 
 <template>
-    <h1>Home</h1>
-    <p>this is to check styling stuff</p>
+    <h2 class="planner-title">Daily Menu Planner</h2>
     <DailyMenuPlanner />
 </template>

@@ -87,6 +87,8 @@ function moveBetweenBuckets(cardId, toBucketKey) {
 .menu-planner-wrapper{
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 1rem;
+    width: 100%;
 }
 </style>

@@ -37,8 +37,9 @@ const { isDragOver } = makeDroppable(sideboardRef, {
 
 <style>
 .sideboard-aside {
-    background-color: aqua;
-    border: 1px solid blue;
+    background-color: var(--bg);
+    border: 2px solid seagreen;
     padding: 1rem;
+    width: 30%;
 }
 </style>

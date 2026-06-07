@@ -3,15 +3,18 @@ import {useSideboardStore} from "@/stores/sideboardStore.ts";
 import { storeToRefs } from "pinia";
 
 const store = useSideboardStore();
-const { groceryList, plannerCards } = storeToRefs(store);
+const { groceryList } = storeToRefs(store);
 
 </script>
 
 <template>
-<p>grocery list component</p>
-
-      <div v-for="(ingredient, idx) in groceryList" :key="idx">
-        {{ ingredient.name }} — {{ ingredient.measure }}
+      <h3 class="grocery-list-title">Grocery List</h3>
+      <div class="groceries-wrapper">
+        <h4>(from Meal Planner)</h4>
+        <section class="grocery-list-wrapper">
+          <div class="grocery-item" v-for="(ingredient, idx) in groceryList" :key="idx">
+            &#11047;&#11047;&nbsp;{{ ingredient.name }} — {{ ingredient.measure }}
+          </div>
+        </section>
       </div>
-
 </template>

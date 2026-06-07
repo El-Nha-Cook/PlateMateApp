@@ -54,12 +54,12 @@ const { isDragOver } = makeDroppable(bucketRef, {
 
 <style>
 .bucket-zone {
-  border: 1px dashed salmon;
+  border: 1px dashed seagreen;
   padding: 0.5rem;
   min-height: 60px;
 }
 .bucket-zone.is-drag-over {
-  outline: 2px solid salmon;
+  outline: 2px solid seagreen;
 }
 .bucket-empty {
   color: #aaa;

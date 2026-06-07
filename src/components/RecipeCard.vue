@@ -7,6 +7,39 @@ const isFlipped = ref(false);
 defineProps<{recipe: Recipe}>();
 const emit = defineEmits(["toggle"]);
 const store = useSideboardStore();
+
+function getIngredientClass(ingredient, index, ingredients){
+    const isWide = `${ingredient.name} - ${ingredient.measure}`.length > 30;
+    //simulate grid slot sonsumption to find the effective last column position
+    let nextCol = 0; // tracks which column the next item will land in (0 = left, 1 = right)
+    let currentCol = 0;
+    for(let i=0; i<= index; i++){
+        const wide = `◍ ${ingredients[i].name} - ${ingredients[i].measure}`.length > 30;
+        currentCol = nextCol;
+        if(wide) {
+            nextCol = 0; // wide items consume the full row, next item starts left
+        } else {
+            nextCol = nextCol === 0 ? 1 : 0; // toggle between columns
+        }
+        // if (i===index) break;
+    }
+    const isLast = index === ingredients.length - 1;
+    const isSecondToLast = index === ingredients.length - 2;
+// Last item is dangling if it's in col 1 (right column, paired with something)
+// but we need to check if making it wide would orphan the item before it
+    const lastIsDangling = isLast && !isWide && currentCol === 1;
+    // const isDangling = isLast && !isWide && currentCol === 1;
+      const secondToLastIsOrphaned = isSecondToLast && !isWide && currentCol === 0 && 
+    (() => {
+      // peek at the last item's column
+      const lastWide = `${ingredients[index + 1].name} - ${ingredients[index + 1].measure}`.length > 30;
+      return !lastWide && nextCol === 1; // last item would land in col 1 (dangling)
+    })();
+//   console.log(index, ingredient.name, { isWide, currentCol, isLast, isDangling });
+    return {
+        'ingredient-wide': isWide || lastIsDangling || secondToLastIsOrphaned,
+    };
+};
 </script>
 
 <template>
@@ -25,15 +58,20 @@ const store = useSideboardStore();
                 <div class="output-container">
                     <span class="my-detail" >Ingredients:</span>
                 </div>
-                <div v-for="ingredient in recipe.ingredients"
-                :key="`${ingredient.name}-${ingredient.measure}`"
-                >
-                    <div class="output-container">
-                        <span class="my-detail">
-                            <span class="dot">&#9677;</span>&nbsp;&nbsp; 
-                            {{ ingredient.name }} - 
-                            {{ ingredient.measure.toLowerCase() }} 
-                        </span>
+                <div class="ingredients-grid">
+
+                    <div 
+                    v-for="(ingredient, index) in recipe.ingredients"
+                    :key="`${ingredient.name}-${ingredient.measure}-${index}`"
+                    :class="getIngredientClass(ingredient,index,recipe.ingredients)"
+                    >
+                        <div class="output-container">
+                            <span class="my-detail">
+                                <span class="dot">&#9677;</span>&nbsp;&nbsp; 
+                                {{ ingredient.name }} - 
+                                {{ ingredient.measure.toLowerCase() }} 
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <!-- this button flips card to the back or front -->
@@ -63,6 +101,13 @@ const store = useSideboardStore();
 </template>
 
 <style scoped>
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+.ingredient-wide {
+  grid-column: 1 / -1;
+}
 .card-container {
     display: flex;
     flex-direction: column;
