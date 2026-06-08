@@ -4,7 +4,7 @@ import { Icon } from '@iconify/vue'
 const team = [
   {
     name: 'Nha Pham',
-    linkedin: 'https://www.linkedin.com/in/nha-pham-96a181295/',
+    linkedin: 'https://www.linkedin.com/in/nha-minh-pham/',
     github: 'https://github.com/nhapham03',
   },
   {
