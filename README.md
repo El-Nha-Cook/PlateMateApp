@@ -36,7 +36,7 @@ Current planned features:
 - TypeScript
 - Vite
 - Pinia
-- Router
+- Vue-Router
 - Vitest
 - ESLint
 - Prettier
