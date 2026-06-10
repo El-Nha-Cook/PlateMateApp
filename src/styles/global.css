@@ -78,20 +78,30 @@ select {
 /* END RESET -------------------------------------------- */
 
 /* GLOBAL VARIABLES  */
+:root,
+:root[data-theme="light"] {
+  --bg: whitesmoke;
+  /* --text: midnightblue; */
+  --text: #1d473b;
+  --surface: #2e3032; 
+  --secondary-text: whitesmoke;
+  --secondary-subtext: #d1d5db;
+  --line: #36806b;
+  --button: thistle;
+}
+
 :root[data-theme="dark"] {
-  --bg: midnightblue;
+  --bg: #1d473b;
   --text: gainsboro;
   --accent: lightsteelblue;
   --surface: darkslateblue;
   --button: lavender;
 }
 
-:root[data-theme="light"] {
-  --bg: snow;
-  --text: midnightblue;
-  --accent: darkslateblue;
-  --surface: darkslateblue;
-  --button: thistle;
+html,
+body {
+  min-height: 100%;
+  margin: 0;
 }
 
 body {
@@ -100,52 +110,201 @@ body {
   display: flex;
   flex-direction: column;
   font-family: sans-serif;
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
-  line-height: 1.5;
-  
+  min-height: 100vh;
 }
 
 h1{
   display: flex;
   justify-content: center;
+  .site-logo {
+    color: var(--text);
+  }
+  
 }
 
-main {
+/*HEADER-NAV-COMBO STYLING */
+.header-nav {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  flex: 1;
-  gap: 1rem;
+  padding: 1rem 5%;
+  background-color: VAR(--bg);
+  border-bottom: 1px solid var(--accent);
+  /* Soft shadow for a "happy" lift */
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
 }
+
+.site-logo.a > * {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: #666;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+  color: #637d64; 
+}
+
 /* LINK STYLING */
 a,
 a:not(.router-link-active),
 a:not(.router-link-exact-active) {
   text-decoration: none;
-  color: var(--accent);
+  color: var(--text);
 }
-/* vue gives you an active class for RouterLink: */
+/* vue's active class for RouterLink: */
 .router-link-active,
 .router-link-exact-active {
-  font-weight: bold;
-  color: var(--accent);
+
+  color: var(--text);
   cursor: pointer;
   text-decoration: none;
 }
+
+
 /* LAYOUT STYLING  */
-.layout-wrapper,
-.recipes-layout-wrapper {
+.layout-wrapper {
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
 }
 
-.main-layout,
-.recipes-layout {
+.main-layout {
     display: flex;
     flex-direction: column;
     background-color: var(--bg);
     align-items: center;
     flex: 1;
     gap: 1rem;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: var(--surface);
+  color: var(--secondary-text);
+  padding: 2rem;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-created {
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.person-row a:hover {
+  color: white;
+}
+
+.person-name,
+.footer-desc {
+  color: var(--secondary-subtext);
+  font-size: 0.9rem;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.person-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.person-row a {
+  color: var(--secondary-subtext);
+  display: flex;
+  transition: color 0.15s;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--secondary-subtext);
+}
+
+.stack-icons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* RECIPE GALLERY */
+.planner-main,
+.recipe-main {
+  background-color: rgb(182, 190, 197);
+}
+.recipe-cards-gallery {
+  /* background-color: lightslategray; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+  gap: .5rem;
+  width: 95%;
+}
+
+.recipe-search {
+  margin: 1rem;
+  padding: .3rem;
+  border-radius: .25rem;
+  border: 2px solid rgb(34, 59, 34);
+  background-color: var(--bg);
+}
+
+/* GROCERY LIST PAGE  */
+.grocery-list-title {
+  font-size: x-large;
+}
+
+.grocery-list-wrapper {
+  background-color: aliceblue;
+display: grid;
+width: 100%;
+grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+padding: .3rem;
+}
+.groceries-wrapper {
+  display: grid;
+  justify-items: center;
+  padding: .3rem;
+  border: 2px solid seagreen;
+  width: 95%;
+}
+.grocery-item {
+  padding: .2rem;
+}
+.planner-title {
+  padding-top: 1rem;
 }
