@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import GalleryCard from '@/components/GalleryCard.vue'
+const base = import.meta.env.BASE_URL
 
 const foods = [
-  { src: '/bowl.jpg', label: 'Bowl' },
-  { src: '/cake.jpg', label: 'Cake' },
-  { src: '/frenchtoast.jpg', label: 'French Toast' },
-  { src: '/kebab.jpg', label: 'Kebab' },
-  { src: '/pizza.jpg', label: 'Pizza' },
-  { src: '/sandwich.jpg', label: 'Sandwich' },
+  { src: `${base}bowl.jpg`, label: 'Bowl' },
+  { src: `${base}cake.jpg`, label: 'Cake' },
+  { src: `${base}frenchtoast.jpg`, label: 'French Toast' },
+  { src: `${base}kebab.jpg`, label: 'Kebab' },
+  { src: `${base}pizza.jpg`, label: 'Pizza' },
+  { src: `${base}sandwich.jpg`, label: 'Sandwich' },
 ]
 </script>
 
